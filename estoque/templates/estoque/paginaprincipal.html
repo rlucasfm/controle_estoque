@@ -1,0 +1,43 @@
+{% extends 'estoque/base.html' %}
+
+{% block title %}Controle de Estoque{% endblock %}
+
+{% block content %}
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Controle de Estoque</h1>
+        </div>
+      </div>
+    </div>
+</header>
+
+<!-- Icons Grid -->
+  <section class="features-icons bg-light text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-screen-desktop m-auto text-primary" onclick="location.href='{% url 'estoque:ExibirProdutos' %}'"></i>
+            </div>
+            <h3>Exibir os produtos</h3>
+            <p class="lead mb-0">Exibir uma lista com os produtos registrados no estoque</p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+            <div class="features-icons-icon d-flex">
+              <i class="icon-check m-auto text-primary" onclick="location.href='{% url 'estoque:AdicionarProdutos' %}'"></i>
+            </div>
+            <h3>Adicionar novo produto</h3>
+            <p class="lead mb-0">Adicionar novos produtos no estoque</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

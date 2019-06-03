@@ -1,0 +1,16 @@
+{% extends 'estoque/base.html' %}
+{% block title %}Adicionar Produtos{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+        <div class="col-xl-12 mx-auto">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+                <input type="button" value="Cancelar" class="btn btn-secondary" onclick="location.href = '{% url 'estoque:PaginaPrincipal'%}'"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

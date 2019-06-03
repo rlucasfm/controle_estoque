@@ -1,0 +1,81 @@
+{% extends 'estoque/base.html' %}
+{% block title %}Lista de Produtos{% endblock %}
+{% block content %}
+<header>
+<div class="overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h1 class="text-center font-weight-bold mb-5">Lista de Produtos</h1>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 mx-auto">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-inline">
+                <div class="col-md">
+                <label>Nome do produto: </label>
+                </div>
+                <div class="col-md">
+                <input type="text" class="form-control" name="nome" placeholder="Produto">
+                </div>
+                <div class="col-md">
+                <input type="submit" class="btn btn-secondary" value="Pesquisar">
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pesquisa completa!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>Este produto não existe.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if erro %}
+    <script>
+    $(document).ready(function(){
+    $("#myModal").modal();
+  });
+    </script>
+{% endif %}
+
+
+<section class="text-center">
+    <div class="container">
+        <div class="row">
+                <div class="list-group">
+                    {% for prods in produtos.all %}
+                    <a href="{% url 'estoque:Detalhes' prods.pk %}" class="list-group-item list-group-item-action">{{ prods.nome }}</a>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+
+<input type="button" class="btn btn-primary" value="Voltar" onclick="location.href='{% url 'estoque:PaginaPrincipal' %}'"/>
+</section>
+
+{% endblock %}
+
